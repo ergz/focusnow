@@ -2,8 +2,12 @@
 	let current_clock_time = $state("");
 	let timer_active = $state(false);
 	let focus_time = $state("30");
+	let focus_time_counter = $state();
+	$effect(() => {
+		focus_time_counter = parseInt(focus_time);
+	});
 
-	$inspect(focus_time);
+	$inspect(focus_time_counter);
 
 	function update_clock() {
 		current_clock_time = new Date().toLocaleString();
@@ -32,5 +36,5 @@
 	<button class="btn {timer_active ? 'btn-error' : 'btn-success'}" onclick={toggle_timer_active}>
 		{timer_active ? "Stop" : "Start"}</button
 	>
-	<h1>Focus for {focus_time} minutes</h1>
+	<h1>Focus for {focus_time_counter} minutes</h1>
 </div>
